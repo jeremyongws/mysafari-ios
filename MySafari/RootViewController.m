@@ -8,7 +8,7 @@
 
 #import "RootViewController.h"
 
-@interface RootViewController () <UIWebViewDelegate, UITextFieldDelegate>
+@interface RootViewController () <UIWebViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityLoader;
 @property (weak, nonatomic) IBOutlet UITextField *urlTextField;
 @property (weak, nonatomic) IBOutlet UIWebView *variableWebView;
@@ -39,6 +39,7 @@
 	
     self.variableWebView.delegate = self;
     self.urlTextField.delegate = self;
+		self.variableWebView.scrollView.delegate = self;
     NSURL *url = [NSURL URLWithString:@"http://www.google.com"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.variableWebView loadRequest:request];
@@ -61,6 +62,18 @@
 	}
 }
 
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+	
+	if (velocity.y > 0){
+		self.urlTextField.hidden = YES;
+	} else {
+		self.urlTextField.hidden = NO;
+	}
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+	self.urlTextField.hidden = NO;
+}
 
 - (IBAction)comingSoon:(id)sender {
 	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Coming soon!" message:@"Coming soon!" preferredStyle:UIAlertControllerStyleAlert];
@@ -80,6 +93,7 @@
     [self.activityLoader stopAnimating];
 	[self.backButton setEnabled:[self.variableWebView canGoBack]];
 	[self.forwardButton setEnabled:[self.variableWebView canGoForward]];
+	self.urlTextField.text = [self.variableWebView stringByEvaluatingJavaScriptFromString:@"window.location.origin"];
 }
 
 @end
