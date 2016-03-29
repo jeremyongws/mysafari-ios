@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Root View Controller-->
@@ -22,11 +23,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="go"/>
                             </textField>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="538-Ur-oZp">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="538-Ur-oZp">
                                 <rect key="frame" x="142" y="234" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dMJ-Bl-HNy">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dMJ-Bl-HNy">
                                 <rect key="frame" x="-4" y="480" width="324" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOe-jz-eOX">
@@ -39,38 +40,63 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9NI-HH-z9Q">
                                         <rect key="frame" x="84" y="7" width="46" height="30"/>
                                         <state key="normal" title="&gt;"/>
+                                        <connections>
+                                            <action selector="onForwardButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0I9-kr-yaC"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGo-nL-mPV">
-                                        <rect key="frame" x="264" y="8" width="46" height="30"/>
+                                        <rect key="frame" x="200" y="8" width="46" height="30"/>
                                         <state key="normal" title="REFRESH"/>
+                                        <connections>
+                                            <action selector="onReloadButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tAl-ps-Lnq"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lc0-CF-Y7e">
-                                        <rect key="frame" x="192" y="8" width="46" height="30"/>
+                                        <rect key="frame" x="138" y="8" width="46" height="30"/>
                                         <state key="normal" title="STOP"/>
+                                        <connections>
+                                            <action selector="onStopLoadingButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vTH-vU-5Ge"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEj-cu-2kG">
+                                        <rect key="frame" x="262" y="6" width="30" height="30"/>
+                                        <state key="normal" title="+"/>
+                                        <connections>
+                                            <action selector="comingSoon:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IGB-Gv-yH7"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <webView contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lh8-no-9L1">
-                                <rect key="frame" x="0.0" y="79" width="320" height="399"/>
+                            <webView contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="lh8-no-9L1">
+                                <rect key="frame" x="0.0" y="75" width="320" height="399"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="399" id="3Jz-ka-BGV"/>
+                                </constraints>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="lh8-no-9L1" secondAttribute="trailing" id="22x-gv-eHM"/>
-                            <constraint firstAttribute="trailing" secondItem="Nrc-gm-FU4" secondAttribute="trailing" id="3pf-PO-KaL"/>
-                            <constraint firstItem="Nrc-gm-FU4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="25" id="6i2-Vx-3XY"/>
-                            <constraint firstItem="lh8-no-9L1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7qW-2U-3N3"/>
-                            <constraint firstItem="Nrc-gm-FU4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="PZO-oG-utr"/>
-                            <constraint firstItem="lh8-no-9L1" firstAttribute="top" secondItem="Nrc-gm-FU4" secondAttribute="bottom" id="sOo-2f-Z87"/>
-                            <constraint firstAttribute="bottom" secondItem="lh8-no-9L1" secondAttribute="bottom" id="xCA-s1-u4G"/>
+                            <constraint firstItem="dMJ-Bl-HNy" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="480" id="7kN-po-7Cf"/>
+                            <constraint firstAttribute="trailing" secondItem="lh8-no-9L1" secondAttribute="trailing" id="Av9-tq-GdV"/>
+                            <constraint firstItem="Nrc-gm-FU4" firstAttribute="trailing" secondItem="lh8-no-9L1" secondAttribute="trailing" id="Fm9-LZ-Q7t"/>
+                            <constraint firstItem="Nrc-gm-FU4" firstAttribute="leading" secondItem="lh8-no-9L1" secondAttribute="leading" id="HOP-GO-cec"/>
+                            <constraint firstItem="Nrc-gm-FU4" firstAttribute="trailing" secondItem="dMJ-Bl-HNy" secondAttribute="trailing" id="INb-wC-Qrp"/>
+                            <constraint firstItem="Nrc-gm-FU4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="25" id="Qai-ok-2t3"/>
+                            <constraint firstItem="dMJ-Bl-HNy" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="W6Y-kK-rxT"/>
+                            <constraint firstItem="dMJ-Bl-HNy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Yib-qz-GyC"/>
+                            <constraint firstItem="lh8-no-9L1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gPo-nT-iX1"/>
+                            <constraint firstItem="538-Ur-oZp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="234" id="qCC-IP-ClC"/>
+                            <constraint firstItem="Nrc-gm-FU4" firstAttribute="centerX" secondItem="538-Ur-oZp" secondAttribute="centerX" id="rr7-Va-r4j"/>
+                            <constraint firstItem="lh8-no-9L1" firstAttribute="top" secondItem="Nrc-gm-FU4" secondAttribute="bottom" id="ykD-CG-n3i"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activityLoader" destination="538-Ur-oZp" id="aLz-J2-9Da"/>
+                        <outlet property="backButton" destination="UOe-jz-eOX" id="QXF-jU-H50"/>
+                        <outlet property="forwardButton" destination="9NI-HH-z9Q" id="eg8-Vf-CwH"/>
                         <outlet property="urlTextField" destination="Nrc-gm-FU4" id="M8u-jn-KNO"/>
                         <outlet property="variableWebView" destination="lh8-no-9L1" id="VFx-iE-ZW5"/>
                     </connections>
